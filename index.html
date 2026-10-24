@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101a1b">
+  <meta name="description" content="Ein Springer, unzählige Möglichkeiten. Spiele KnightHop solo, gegen die Zeit oder zu zweit auf einem Gerät. Kostenlos und ohne Anmeldung.">
+  <title>KnightHop — Jeder Sprung zählt.</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMxMTFkMWUiLz48cGF0aCBkPSJtMTkgNDUgMy0xMiA5LTctNiAxLTcgNS03LTYgOC0xNSA5LTMgMS01IDcgN2MxMiA0IDE3IDE1IDE1IDI3bC0xIDhaTTE2IDQ5aDM3djdIMTR2LTRaIiBmaWxsPSIjOWFlZmQ1Ii8+PGNpcmNsZSBjeD0iMjgiIGN5PSIxOCIgcj0iMi4zIiBmaWxsPSIjMTExZDFlIi8+PC9zdmc+Cg==" type="image/svg+xml">
+  <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{color-scheme:dark;--bg:#10191a;--panel:#162122;--line:#2c3939;--text:#f1f1e9;--muted:#91a09e;--accent:#9aefd5;--accent-rgb:154,239,213;--opponent:#d8b1f6;--board-dark:#1e3031;--board-light:#283c3c;font-family:'DM Sans',system-ui,sans-serif;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 28% 38%,#20312b55,transparent 60%),var(--bg);color:var(--text);min-height:100svh}button,a,input{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;color:inherit}button:disabled{cursor:default}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:5px}button{transition:background .18s,border-color .18s,transform .18s}a{color:inherit;text-decoration:none}[hidden]{display:none!important}.svg-library{position:absolute;width:0;height:0;overflow:hidden}.site-shell{max-width:1264px;margin:auto;padding:0 48px}.site-header{display:flex;align-items:center;justify-content:space-between;min-height:104px;border-bottom:1px solid var(--line)}.wordmark{display:flex;align-items:center;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;letter-spacing:-1px;font-size:23px}.wordmark>span:not(.brand-icon){color:var(--accent)}.brand-icon{display:grid;place-items:center;background:var(--accent);color:#132421;width:35px;height:38px;border-radius:7px;margin-right:11px;transform:rotate(-5deg)}.brand-icon svg{width:27px;height:30px}.wordmark small{align-self:flex-start;margin:3px 0 0 11px;padding:3px 5px;font:9px 'DM Sans',sans-serif;letter-spacing:1px;color:var(--muted);border:1px solid var(--line);border-radius:3px}.header-tools{display:flex;align-items:center;gap:10px}.local-badge{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:11px;margin-right:24px}.local-badge i,.live-dot{height:6px;width:6px;border-radius:50%;background:var(--accent)}.icon-button{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:transparent;font-family:'Space Grotesk',sans-serif;font-size:17px;display:grid;place-items:center}.icon-button svg{width:19px;height:19px}.icon-button:hover{background:#ffffff0d}.intro{display:flex;justify-content:space-between;align-items:end;padding:44px 0 30px}.eyebrow{color:var(--accent);font-size:10px;font-weight:600;letter-spacing:2px;margin:0 0 12px}h1,h2,h3,p{margin-top:0}h1{font-family:'Space Grotesk',system-ui,sans-serif;font-size:clamp(32px,3.7vw,48px);font-weight:500;line-height:1.15;letter-spacing:-2px;margin-bottom:0}h1 span{color:var(--accent)}.intro-copy{font-size:13px;line-height:1.65;color:var(--muted);margin:0 0 3px}.game-layout{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(300px,1fr);align-items:start;gap:36px}.arena{background:var(--panel);border:1px solid #354440;border-radius:16px;padding:22px 26px 17px;box-shadow:0 20px 60px #00000018;position:relative;overflow:hidden}.arena-top{display:flex;align-items:center;justify-content:space-between;height:25px;margin-bottom:24px}.arena-title{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:1.4px;font-weight:650}.live-dot{box-shadow:0 0 12px #9aefd533}.tag{margin-left:5px;padding:4px 6px;color:var(--muted);font-size:9px;letter-spacing:1px;border:1px solid var(--line);border-radius:4px}.text-button{background:none;border:0;padding:0;color:var(--muted);font-size:11px;line-height:1.5}.text-button:hover{color:var(--accent)}#pause-button{display:flex;align-items:center;gap:6px;font-size:16px}#pause-button span{font-size:11px}.stats{display:flex;justify-content:space-between;margin-bottom:18px}.stat-label{display:block;font-size:9px;letter-spacing:1.6px;color:var(--muted);margin-bottom:7px}.stats strong{font-family:'Space Grotesk',sans-serif;font-size:31px;font-weight:500;line-height:1;letter-spacing:-1px;font-variant-numeric:tabular-nums}.stats strong span{font-size:16px;color:#758b88;letter-spacing:0}.best-stat{text-align:right}.best-stat strong{color:var(--accent)}.time-track{height:3px;background:#ffffff09;border-radius:3px;margin-bottom:15px;overflow:hidden}.time-track>div{height:100%;width:100%;background:var(--accent);transition:width .1s linear}.time-track.urgent>div{background:#f5a48c}.board-wrap{position:relative}.board-coordinates{display:grid;margin-left:18px;margin-bottom:7px;text-align:center}.board-coordinates,.row-coordinates{font-size:9px;font-weight:500;color:#78928d}.board-row{display:flex;align-items:stretch;gap:8px}.row-coordinates{display:grid;width:10px;text-align:left;flex-shrink:0;align-items:center}.board{display:grid;gap:5px;aspect-ratio:1;width:100%;min-width:0}.cell{position:relative;aspect-ratio:1;min-width:0;padding:0;border:1px solid transparent;border-radius:5px;background:var(--board-dark);display:grid;place-items:center;overflow:hidden;user-select:none}.cell.light{background:var(--board-light)}.cell.legal{cursor:pointer;border-color:rgba(var(--accent-rgb),.32);background:rgba(var(--accent-rgb),.095)}.cell .move-dot{display:block;background:var(--accent);width:9px;height:9px;border-radius:50%;box-shadow:0 0 15px rgba(var(--accent-rgb),.24)}.cell.legal:hover{background:rgba(var(--accent-rgb),.24);border-color:var(--accent);transform:translateY(-2px)}.cell.current{background:var(--accent);box-shadow:0 3px 18px rgba(var(--accent-rgb),.16);border-color:#fff3;color:#153a31}.cell.current svg{width:68%;height:75%;filter:drop-shadow(0 2px 1px #0002)}.cell.current.p2{background:var(--opponent);color:#372547}.cell.visited{background:#131f20;border-color:#243231}.cell .trail-dot{width:5px;height:5px;border-radius:50%;background:rgba(var(--accent-rgb),.28)}.cell.visited.p2 .trail-dot{background:#d8b1f650}.cell.blocked{background:#191f22;color:#bc8274}.block-mark{font-size:22px;font-weight:400;opacity:.7}.cell:focus-visible{outline-offset:-3px;outline:2px solid #fff;z-index:1}.cell.last-hop{animation:hop .25s ease-out}.board.duo-p2 .cell.legal{border-color:#d8b1f650;background:#d8b1f612}.board.duo-p2 .move-dot{background:var(--opponent)}.board-footer{display:flex;justify-content:space-between;gap:8px;margin:18px 0 0 18px;color:var(--muted);font-size:10px}.board-footer>span:first-child{display:flex;align-items:center;gap:7px}.legend-dot{background:var(--accent);height:5px;width:5px;border-radius:50%}.sidebar{padding:3px 0 0}.section-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.section-heading h2{font-size:17px;letter-spacing:-.5px;font-weight:500;margin:0}.section-heading>span{color:#69807c;font-size:9px;letter-spacing:1px}.mode-list{display:grid;gap:7px}.mode-card{display:flex;align-items:center;gap:15px;text-align:left;width:100%;padding:12px 15px;border:1px solid var(--line);border-radius:8px;background:transparent}.mode-card:hover{background:#ffffff04;border-color:#5c7670}.mode-card.selected{background:rgba(var(--accent-rgb),.055);border-color:rgba(var(--accent-rgb),.7)}.mode-symbol{width:26px;text-align:center;font-family:system-ui,sans-serif;font-size:25px;color:#869994}.mode-card.selected .mode-symbol{color:var(--accent)}.mode-card strong{display:block;font-size:13px;font-weight:550;line-height:1.2;margin-bottom:4px}.mode-card small{font-size:10px;color:var(--muted)}.mode-indicator{margin-left:auto;width:13px;height:13px;border:1px solid #465b57;border-radius:50%;flex-shrink:0}.mode-card.selected .mode-indicator{border:4px solid var(--accent);background:var(--bg)}.settings-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:23px}.setting-label{font-size:9px;letter-spacing:1.4px;color:var(--muted)}.size-options{display:flex;gap:5px}.size-options button{background:transparent;border:1px solid var(--line);border-radius:5px;padding:7px 9px;font-size:10px;color:var(--muted)}.size-options button.selected{color:var(--accent);border-color:#7ebca7;background:rgba(var(--accent-rgb),.07)}.theme-row{margin:17px 0 24px}.theme-options{display:flex;gap:10px}.theme-options button{border:3px solid var(--bg);outline:1px solid transparent;border-radius:50%;width:19px;height:19px;background:#9aefd5}.theme-options button.selected{outline-color:var(--accent)}.theme-options button[data-theme=blue]{background:#9ac9ff}.theme-options button[data-theme=gold]{background:#f4d28d}.theme-options button[data-theme=pink]{background:#f2abcf}.primary-button{display:flex;align-items:center;justify-content:space-between;background:var(--accent);border:1px solid var(--accent);border-radius:7px;color:#142e26;font-weight:650;font-size:13px;width:100%;padding:15px 18px;min-height:48px}.primary-button span{font-size:20px;font-weight:400;line-height:1}.primary-button:hover{filter:brightness(1.08);transform:translateY(-1px)}.start-note{text-align:center;color:#768b85;font-size:9px;margin:10px 0 0}.quick-rule{border-top:1px solid var(--line);margin-top:26px;padding-top:22px;display:flex;align-items:start;gap:17px}.rule-graphic{display:grid;grid-template-columns:repeat(3,13px);grid-template-rows:repeat(3,13px);gap:2px;position:relative;margin-top:3px;flex-shrink:0}.rule-graphic i{background:#273735;border-radius:2px;font-style:normal;font-size:11px;line-height:13px;text-align:center;color:var(--accent)}.rule-graphic i.target{background:#9aefd522;font-size:6px}.quick-rule h3{font-size:12px;font-weight:550;margin-bottom:7px}.quick-rule p{font-size:11px;line-height:1.7;color:var(--muted);margin-bottom:8px}.quick-rule button{font-size:10px;color:var(--accent)}.quick-rule button span{margin-left:5px}.site-footer{display:flex;align-items:center;justify-content:space-between;padding:26px 0;margin:32px 0 0;border-top:1px solid var(--line);font-size:9px;letter-spacing:1.4px;color:#71857f}.site-footer>span:last-child{letter-spacing:.2px;color:var(--muted)}.site-footer b{font-size:8px;color:var(--accent);border:1px solid var(--line);border-radius:3px;padding:2px 4px;margin-left:5px}.site-footer i{font-style:normal;margin:0 10px;color:#465854}
+#playing-panel{min-height:415px;padding-top:8px}#playing-panel h2{font-family:'Space Grotesk',sans-serif;font-weight:500;letter-spacing:-1px;font-size:30px;line-height:1.2;margin:17px 0}.play-description{font-size:13px;color:var(--muted);line-height:1.8}.progress-card{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:20px;margin:25px 0}.progress-card>div:first-child{display:flex;justify-content:space-between;gap:8px;font-size:12px}.progress-card strong{color:var(--accent);font-weight:500}.progress-dots{display:flex;gap:5px;margin:18px 0}.progress-dots i{flex:1;height:5px;border-radius:2px;background:#ffffff12}.progress-dots i.filled{background:var(--accent)}.progress-card p{color:var(--muted);font-size:11px;line-height:1.7;margin:0}.secondary-button{width:100%;border:1px solid var(--line);border-radius:7px;background:transparent;padding:13px;color:var(--text);font-size:12px}.secondary-button:hover{border-color:var(--accent);color:var(--accent)}.menu-button{display:block;margin:18px auto 0}.turn-card{border-left:2px solid var(--accent);padding:12px 15px;background:#ffffff05;margin-bottom:22px;color:var(--accent);font-size:13px}.board-overlay{position:absolute;inset:0;z-index:4;display:grid;align-items:center;justify-items:center;background:#10191acc;border-radius:8px;backdrop-filter:blur(8px);padding:18px}.overlay-card{width:100%;max-width:305px;text-align:center;outline:none}.overlay-icon{display:block;width:44px;height:50px;color:var(--accent);margin:0 auto 16px}.overlay-icon svg{height:100%;width:100%}.overlay-card h2{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:29px;letter-spacing:-1px;line-height:1.2;margin:10px 0}.overlay-card>p:not(.eyebrow){color:#b6c8c1;font-size:12px;line-height:1.6;margin-bottom:12px}.overlay-card>strong{font-family:'Space Grotesk',sans-serif;font-size:36px;color:var(--accent);font-weight:500;display:block;margin-bottom:20px}.overlay-card .primary-button{justify-content:space-between}.overlay-card>.text-button{display:block;margin:16px auto 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}dialog{max-width:520px;width:calc(100% - 32px);border:1px solid #536b61;border-radius:15px;background:#162322;color:var(--text);padding:36px;max-height:calc(100svh - 40px)}dialog::backdrop{background:#091110b8;backdrop-filter:blur(5px)}.dialog-close{position:absolute;top:12px;right:12px}dialog h2{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:500;letter-spacing:-1px;margin:16px 0}dialog p{font-size:12px;line-height:1.8;color:#a9bcb5}dialog h3{font-size:13px;font-weight:600;margin:21px 0 5px}dialog .eyebrow{color:var(--accent);font-size:9px}dialog .privacy-note{border-top:1px solid var(--line);padding-top:15px;font-size:11px}.mode-rule{padding:10px 0;border-bottom:1px solid var(--line)}.mode-rule strong{font-size:12px;color:var(--accent)}.mode-rule p{margin:4px 0 0;font-size:11px}@keyframes hop{0%{transform:scale(.8)}60%{transform:scale(1.1)}100%{transform:scale(1)}}
+@media(min-width:1400px){.site-shell{padding:0 40px}.intro{padding-top:46px}.arena{padding:24px 28px 20px}.mode-card{padding:14px 16px}.game-layout{gap:42px}}
+@media(max-width:1000px){.site-shell{padding:0 26px}.game-layout{gap:24px;grid-template-columns:minmax(0,1.3fr) minmax(280px,1fr)}.arena{padding:20px 18px 17px}.intro-copy{font-size:11px}.board{gap:4px}.mode-card{padding:10px 12px}.settings-row{margin-top:19px}.local-badge{margin-right:12px}.stat-label{font-size:8px;letter-spacing:1px}.stats strong{font-size:27px}.board-footer{font-size:9px}}
+@media(max-width:760px){.site-shell{padding:0 20px;max-width:600px}.site-header{min-height:80px}.wordmark{font-size:20px}.brand-icon{width:30px;height:33px}.brand-icon svg{width:23px;height:26px}.wordmark small{font-size:7px;margin-left:7px}.header-tools{gap:7px}.local-badge{display:none}.icon-button{width:32px;height:32px}.intro{padding:29px 0 24px}.eyebrow{font-size:8px;letter-spacing:1.6px}h1{font-size:36px;letter-spacing:-1.6px}.intro-copy{display:none}.game-layout{grid-template-columns:minmax(0,1fr);gap:28px}.arena{padding:19px 20px 16px}.arena-top{margin-bottom:20px}.stats{margin-bottom:16px}.stats strong{font-size:30px}.stat-label{font-size:8px;letter-spacing:1.3px}.board{gap:5px}.board-footer{font-size:9px;margin-top:16px}.sidebar{padding:0 1px}.section-heading h2{font-size:19px}.mode-list{grid-template-columns:1fr 1fr;gap:8px}.mode-card{gap:8px;padding:12px 10px}.mode-card small{font-size:9px;line-height:1.4;display:block;max-width:120px}.mode-card strong{font-size:12px}.mode-symbol{font-size:22px;width:23px}.mode-indicator{width:11px;height:11px}.mode-card.selected .mode-indicator{border-width:3px}.mode-card:last-child{grid-column:1 / -1}.mode-card:last-child small{max-width:none}.settings-row{margin-top:22px}.size-options button{padding:8px 12px}.theme-row{margin-bottom:22px}.quick-rule{margin-top:24px}.quick-rule p{max-width:330px}.site-footer{padding:20px 0 25px;margin-top:26px;gap:12px;line-height:1.7;font-size:7px;letter-spacing:1px}.site-footer>span:last-child{text-align:right;max-width:150px}.site-footer i{margin:0 4px}#playing-panel{min-height:0}#playing-panel h2{font-size:28px}.progress-card{margin:20px 0}.overlay-card h2{font-size:26px}.overlay-card>strong{font-size:30px;margin-bottom:15px}.overlay-icon{width:33px;height:38px;margin-bottom:10px}.overlay-card .eyebrow{margin-bottom:7px}.overlay-card .primary-button{padding:12px 15px;min-height:43px}.board-overlay{padding:16px}.overlay-card>.text-button{margin-top:12px}dialog{padding:30px 24px}.board-coordinates,.row-coordinates{font-size:8px}}
+@media(max-width:360px){.site-shell{padding:0 12px}.wordmark small{display:none}.arena{padding:16px 13px}.board{gap:4px}.board-footer{font-size:8px}.mode-card{gap:5px;padding:10px 8px}.mode-symbol{width:20px}.mode-indicator{margin-left:0}.overlay-card h2{font-size:22px}.overlay-card>p:not(.eyebrow){font-size:11px}.overlay-icon{display:none}.stat-label{font-size:7px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.primary-button span,.quick-rule button span{display:inline-block;position:relative;font-size:0;width:14px;height:14px;flex-shrink:0}.primary-button span::before,.quick-rule button span::before{content:'';position:absolute;top:2px;right:1px;width:9px;height:9px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor}.primary-button span::after,.quick-rule button span::after{content:'';position:absolute;top:7px;right:0;width:14px;height:1.5px;background:currentColor;transform:rotate(-45deg)}.quick-rule button span{width:9px;height:9px;transform:scale(.7);transform-origin:left center;vertical-align:middle}
+</style>
+  
+</head>
+<body>
+  <svg class="svg-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><symbol id="knight" viewBox="0 0 48 48"><path d="m13 37 3-9 7-6-5 1-6 5-6-5 7-13 7-3 1-5 6 6c9 3 13 11 12 20l-1 9ZM11 40h29v5H9v-3Z" fill="currentColor"/><circle cx="20" cy="13" r="1.8" fill="var(--board-dark, #152526)"/><path d="m10 21 6-3" stroke="var(--board-dark, #152526)" stroke-width="1.5"/></symbol></svg>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="KnightHop Startseite"><span class="brand-icon"><svg><use href="#knight"/></svg></span>KNIGHT<span>HOP</span><small>VOL. 02</small></a>
+      <div class="header-tools"><span class="local-badge"><i></i> Kein Login. Nur dein nächster Zug.</span><button id="sound-button" class="icon-button" aria-label="Ton einschalten" aria-pressed="false" title="Ton einschalten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 5 6 9H3v6h3l5 4Z"/><path id="sound-waves" d="m16 9 5 6m0-6-5 6"/></svg></button><button id="help-button" class="icon-button" aria-label="Spielregeln öffnen" title="Spielregeln">?</button></div>
+    </header>
+
+    <main>
+      <section class="intro"><div><p class="eyebrow">DAS KLEINE SPIEL FÜR GROSSE ZÜGE</p><h1>Jeder Sprung <span>zählt.</span></h1></div><p class="intro-copy">Denk einen Zug weiter.<br>Wie weit kommst du mit einem Springer?</p></section>
+      <div class="game-layout">
+        <section class="arena" aria-label="KnightHop Spielbereich">
+          <div class="arena-top"><div class="arena-title"><span class="live-dot"></span><span id="arena-mode">CLASSIC</span><span class="tag" id="level-tag">LEVEL 01</span></div><button id="pause-button" class="text-button" hidden>Ⅱ <span>Pause</span></button></div>
+          <div class="stats"><div><span class="stat-label" id="score-label">DEIN SCORE</span><strong id="score">000</strong></div><div id="secondary-stat"><span class="stat-label" id="secondary-label">NÄCHSTES LEVEL</span><strong id="secondary">0<span> / 10</span></strong></div><div class="best-stat"><span class="stat-label" id="best-label">BESTWERT</span><strong id="best">000</strong></div></div>
+          <div class="time-track" id="time-track"><div id="time-fill"></div></div>
+          <div class="board-wrap">
+            <div class="board-coordinates" id="column-labels" aria-hidden="true"></div>
+            <div class="board-row"><div class="row-coordinates" id="row-labels" aria-hidden="true"></div><div class="board" id="board" role="group" aria-label="Spielbrett"></div></div>
+            <div id="board-overlay" class="board-overlay" hidden>
+              <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="overlay-title" tabindex="-1"><span class="overlay-icon"><svg><use href="#knight"/></svg></span><p class="eyebrow" id="overlay-eyebrow">GUT GESPRUNGEN</p><h2 id="overlay-title">Runde beendet</h2><p id="overlay-description"></p><strong id="overlay-score"></strong><button id="overlay-primary" class="primary-button">Nochmal spielen <span>↗</span></button><button id="overlay-secondary" class="text-button">Zur Modusauswahl</button></div>
+            </div>
+          </div>
+          <div class="board-footer"><span><i class="legend-dot"></i> Möglicher Sprung</span><span id="board-caption">2 Felder vor. 1 zur Seite.</span></div>
+          <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+        </section>
+
+        <aside class="sidebar">
+          <div id="setup-panel">
+            <div class="section-heading"><h2>Dein Spiel. Deine Regeln.</h2><span>01—05</span></div>
+            <div class="mode-list" id="mode-list" role="group" aria-label="Spielmodus wählen">
+              <button class="mode-card selected" data-mode="classic" aria-pressed="true"><span class="mode-symbol">♜</span><span><strong>Classic</strong><small>10 Sprünge. Ein neues Level.</small></span><span class="mode-indicator"></span></button>
+              <button class="mode-card" data-mode="endless" aria-pressed="false"><span class="mode-symbol">∞</span><span><strong>Endless</strong><small>Dein Rhythmus. Kein Zeitlimit.</small></span><span class="mode-indicator"></span></button>
+              <button class="mode-card" data-mode="danger" aria-pressed="false"><span class="mode-symbol">⌁</span><span><strong>Danger</strong><small>Mehr Hindernisse. Mehr Taktik.</small></span><span class="mode-indicator"></span></button>
+              <button class="mode-card" data-mode="duo" aria-pressed="false"><span class="mode-symbol">⚔</span><span><strong>Duo</strong><small>Zwei Springer. Ein Duell.</small></span><span class="mode-indicator"></span></button>
+              <button class="mode-card" data-mode="time" aria-pressed="false"><span class="mode-symbol">◷</span><span><strong>Time Rush</strong><small>30 Sekunden. Alles geben.</small></span><span class="mode-indicator"></span></button>
+            </div>
+            <div class="settings-row"><span class="setting-label">BRETTGRÖSSE</span><div class="size-options" role="group" aria-label="Brettgröße"><button data-size="5" aria-pressed="false">5×5</button><button data-size="6" aria-pressed="false">6×6</button><button data-size="7" aria-pressed="true" class="selected">7×7</button><button data-size="8" aria-pressed="false">8×8</button></div></div>
+            <div class="settings-row theme-row"><span class="setting-label">DEINE FARBE</span><div class="theme-options" role="group" aria-label="Akzentfarbe"><button data-theme="mint" class="selected" aria-label="Mint" aria-pressed="true"></button><button data-theme="blue" aria-label="Blau" aria-pressed="false"></button><button data-theme="gold" aria-label="Gold" aria-pressed="false"></button><button data-theme="pink" aria-label="Pink" aria-pressed="false"></button></div></div>
+            <button id="start-button" class="primary-button">Spiel starten <span>↗</span></button><p class="start-note">Mit Maus, Touch oder Tastatur spielen</p>
+          </div>
+          <div id="playing-panel" hidden>
+            <p class="eyebrow">DEIN NÄCHSTER ZUG</p><h2 id="play-heading">Bleib einen Sprung voraus.</h2><p id="play-description" class="play-description"></p>
+            <div class="progress-card"><div><span id="progress-label">Level-Fortschritt</span><strong id="progress-value">0 / 10</strong></div><div id="progress-dots" class="progress-dots"></div><p id="progress-note">Zehn Sprünge öffnen das nächste Brett.</p></div>
+            <div id="duo-turn" class="turn-card" hidden></div>
+            <button id="restart-button" class="secondary-button">↻ &nbsp; Neu starten</button><button id="menu-button" class="text-button menu-button">← Zur Modusauswahl</button>
+          </div>
+          <div class="quick-rule"><span class="rule-graphic" aria-hidden="true"><i></i><i></i><i></i><i></i><i>♞</i><i></i><i></i><i></i><i class="target">●</i></span><div><h3>Immer schön im L.</h3><p>Zwei Felder in eine Richtung, eins zur Seite. Besuchte Felder sind tabu.</p><button class="text-button" id="rules-link">Alle Spielregeln <span>↗</span></button></div></div>
+        </aside>
+      </div>
+    </main>
+    <footer class="site-footer"><span>WENIGER SCROLLEN. MEHR SPRINGEN.</span><span>KnightHop <b>02</b><i> / </i> Made for your next move.</span></footer>
+  </div>
+
+  <dialog id="rules-dialog" aria-labelledby="rules-title"><button id="close-rules" class="icon-button dialog-close" aria-label="Regeln schließen">×</button><p class="eyebrow">SO WIRD GESPRUNGEN</p><h2 id="rules-title">Ein L. Viele Möglichkeiten.</h2><p>Dein Springer zieht wie beim Schach: zwei Felder waagerecht und eins senkrecht – oder umgekehrt. Markierte Punkte zeigen deine nächsten Ziele. Über Hindernisse darfst du springen, darauf landen nicht.</p><div id="mode-rules"></div><h3>Mit der Tastatur</h3><p>Mit Tab zum Brett, dann mit den Pfeiltasten ein Feld auswählen und mit Enter oder Leertaste springen. P pausiert das Spiel. Escape schließt die Spielregeln oder pausiert die laufende Runde.</p><p class="privacy-note">Bestwerte und Einstellungen bleiben auf diesem Gerät. Beim Wechsel in einen anderen Tab pausiert deine Runde automatisch.</p><button id="understood" class="primary-button">Alles klar <span>↗</span></button></dialog>
+<script type="module">
+/** KnightHop's clock- and DOM-independent game rules. */
+const MODES = Object.freeze({
+  classic: {
+    title: 'Classic',
+    description: 'Zehn Sprünge. Ein neues Level. Bleib in Bewegung.',
+    rules: 'Springe auf freie Felder. Nach 10 Zügen beginnt ein neues Brett mit 50 Sekunden. Hindernisse werden anspruchsvoller.'
+  },
+  endless: {
+    title: 'Endless',
+    description: 'Finde deinen Rhythmus. Ganz ohne Zeitdruck.',
+    rules: 'Jedes Feld darf nur einmal betreten werden. Nach 10 Zügen geht es auf einem frischen Brett weiter. Ohne Zeitlimit.'
+  },
+  danger: {
+    title: 'Danger',
+    description: 'Mehr Hindernisse. Jeder Zug eine Entscheidung.',
+    rules: 'Weiche den gesperrten Feldern aus und sammle möglichst viele Punkte auf einem Brett. Besuche kein Feld zweimal.'
+  },
+  duo: {
+    title: 'Duo',
+    description: 'Zwei Springer. Ein Brett. Wer hält länger durch?',
+    rules: 'Spielt abwechselnd am selben Gerät. Besuchte und besetzte Felder sind gesperrt. Wer keinen Zug mehr hat, verliert.'
+  },
+  time: {
+    title: 'Time Rush',
+    description: '30 Sekunden. Wie viele Sprünge schaffst du?',
+    rules: 'Sammle in 30 Sekunden so viele Sprünge wie möglich. Hier darfst du Felder erneut besuchen. Jeder Sprung gibt 10 Punkte.'
+  }
+});
+
+const STEPS = [[1, 2], [2, 1], [2, -1], [1, -2], [-1, -2], [-2, -1], [-2, 1], [-1, 2]];
+const inside = (size, x, y) => Number.isInteger(x) && Number.isInteger(y) && x >= 0 && y >= 0 && x < size && y < size;
+const key = ({x, y}) => `${x},${y}`;
+
+function neighbors(size, {x, y}) {
+  return STEPS.map(([dx, dy]) => ({x: x + dx, y: y + dy})).filter(p => inside(size, p.x, p.y));
+}
+
+function sample(random) {
+  const n = random();
+  return typeof n === 'number' && Number.isFinite(n) ? Math.max(0, Math.min(0.999999999, n)) : 0.5;
+}
+
+/** A bounded depth-first search reserves a genuinely playable route before obstacles.
+ *  Low onward-degree choices first keep the small 5×5 board from becoming a dead end.
+ *  This only chooses the initial layout; it never forces the player's route.
+ */
+function openingRoute(size, start) {
+  const route = [start];
+  const seen = new Set([key(start)]);
+  let budget = 50000;
+  function extend() {
+    if (route.length === 11) return true;
+    if (--budget <= 0) return false;
+    const candidates = neighbors(size, route.at(-1)).filter(p => !seen.has(key(p)));
+    candidates.sort((a, b) =>
+      neighbors(size, a).filter(p => !seen.has(key(p))).length -
+      neighbors(size, b).filter(p => !seen.has(key(p))).length
+    );
+    for (const next of candidates) {
+      seen.add(key(next));
+      route.push(next);
+      if (extend()) return true;
+      route.pop();
+      seen.delete(key(next));
+    }
+    return false;
+  }
+  // All permitted board sizes and starting squares admit this short route.
+  if (!extend()) throw new Error('Kein spielbares Startbrett gefunden.');
+  return route;
+}
+
+function newBoard(state) {
+  const safe = new Set(openingRoute(state.size, state.positions[0]).map(key));
+  if (state.mode === 'duo') {
+    safe.add(key(state.positions[1]));
+    for (const p of neighbors(state.size, state.positions[1])) safe.add(key(p));
+  }
+  const probability = state.mode === 'danger' ? 0.23 : state.mode === 'classic' ? Math.min(0.30, 0.05 + state.level * 0.04) : 0;
+  state.board = Array.from({length: state.size}, (_, y) => Array.from({length: state.size}, (_, x) => ({
+    blocked: probability > 0 && !safe.has(`${x},${y}`) && sample(state._random) < probability,
+    visited: 0
+  })));
+}
+
+function createGame(options = {}) {
+  const {mode: requestedMode = 'classic', size: requestedSize = 7, random = Math.random} = options || {};
+  const mode = Object.hasOwn(MODES, requestedMode) ? requestedMode : 'classic';
+  const size = Number.isInteger(requestedSize) && requestedSize >= 5 && requestedSize <= 8 ? requestedSize : 7;
+  const center = Math.floor(size / 2);
+  const duration = mode === 'classic' ? 50 : mode === 'time' ? 30 : null;
+  const state = {
+    mode, size, board: [],
+    positions: [mode === 'duo' ? {x: 0, y: 0} : {x: center, y: center}, {x: size - 1, y: size - 1}],
+    scores: [0, 0], turn: 1, level: 1, moves: 0, levelMoves: 0,
+    remaining: duration, duration, phase: 'playing', reason: null, winner: null, lastEvent: 'start'
+  };
+  Object.defineProperty(state, '_random', {value: typeof random === 'function' ? random : Math.random});
+  newBoard(state);
+  return state;
+}
+
+function legalMoves(state, player = state.turn) {
+  if (player !== 1 && player !== 2) return [];
+  if (player === 2 && state.mode !== 'duo') return [];
+  const other = state.mode === 'duo' ? state.positions[player === 1 ? 1 : 0] : null;
+  return neighbors(state.size, state.positions[player - 1]).filter(({x, y}) => {
+    const cell = state.board[y][x];
+    if (other && x === other.x && y === other.y) return false;
+    return !cell.blocked && (state.mode === 'time' || cell.visited === 0);
+  });
+}
+
+function finish(state, reason) {
+  state.phase = 'over';
+  state.reason = reason;
+  state.winner = state.mode === 'duo' ? (state.turn === 1 ? 2 : 1) : null;
+  state.lastEvent = 'over';
+}
+
+/** Return false without changing state for illegal, paused, or post-game input. */
+function move(state, x, y) {
+  if (state.phase !== 'playing' || !inside(state.size, x, y)) return false;
+  if (!legalMoves(state).some(p => p.x === x && p.y === y)) return false;
+  const index = state.turn - 1;
+  const previous = state.positions[index];
+  if (state.mode !== 'time') state.board[previous.y][previous.x].visited = state.turn;
+  state.positions[index] = {x, y};
+  state.scores[index] += 10;
+  state.moves++;
+  state.levelMoves++;
+  state.lastEvent = 'move';
+
+  if ((state.mode === 'classic' || state.mode === 'endless') && state.levelMoves >= 10) {
+    state.level++;
+    state.levelMoves = 0;
+    state.remaining = state.duration;
+    newBoard(state);
+    state.lastEvent = 'level';
+  } else if (state.mode === 'duo') {
+    state.turn = state.turn === 1 ? 2 : 1;
+  }
+  if (legalMoves(state).length === 0) finish(state, state.mode === 'duo' ? 'duo-trapped' : 'trapped');
+  return true;
+}
+
+/** The host supplies actual elapsed seconds, avoiding fixed-tick timer drift. */
+function advanceTime(state, seconds) {
+  if (state.phase !== 'playing' || state.remaining === null || !Number.isFinite(seconds) || seconds <= 0) return state;
+  state.remaining = Math.max(0, state.remaining - seconds);
+  if (state.remaining === 0) finish(state, 'timeout');
+  return state;
+}
+
+function pause(state) {
+  if (state.phase === 'playing') {
+    state.phase = 'paused';
+    state.lastEvent = 'pause';
+  }
+  return state;
+}
+
+function resume(state) {
+  if (state.phase === 'paused') {
+    state.phase = 'playing';
+    state.lastEvent = 'resume';
+  }
+  return state;
+}
+
+
+const $ = id => document.getElementById(id);
+const themes = {mint:['#9aefd5','154,239,213'],blue:['#9ac9ff','154,201,255'],gold:['#f4d28d','244,210,141'],pink:['#f2abcf','242,171,207']};
+const storage = {
+  read(key, fallback) { try { return JSON.parse(localStorage.getItem(`knighthop.v2.${key}`)) ?? fallback; } catch { return fallback; } },
+  write(key, value) { try { localStorage.setItem(`knighthop.v2.${key}`, JSON.stringify(value)); } catch { /* Private browsing must not prevent playing. */ } }
+};
+const saved = storage.read('settings', {});
+let mode = Object.hasOwn(MODES, saved?.mode) ? saved.mode : 'classic';
+let size = [5,6,7,8].includes(saved?.size) ? saved.size : 7;
+let theme = Object.hasOwn(themes, saved?.theme) ? saved.theme : 'mint';
+let soundOn = storage.read('sound', false) === true;
+let game, started = false, frameTime = performance.now(), cells = [], focusPosition = 0, overlayState = '', bestAtStart = 0;
+let audioContext;
+const pad = value => String(value).padStart(3, '0');
+const knightMarkup = '<svg aria-hidden="true"><use href="#knight"/></svg>';
+
+function bestScore() {
+  const value = storage.read(`best.${mode}.${size}`, 0);
+  return Number.isFinite(value) && value >= 0 ? value : 0;
+}
+function saveSettings() { storage.write('settings', {mode,size,theme}); }
+function applyTheme() {
+  document.documentElement.style.setProperty('--accent', themes[theme][0]);
+  document.documentElement.style.setProperty('--accent-rgb', themes[theme][1]);
+  document.querySelectorAll('[data-theme]').forEach(button => {
+    const selected = button.dataset.theme === theme;
+    button.classList.toggle('selected',selected); button.setAttribute('aria-pressed',String(selected));
+  });
+}
+function announce(message) { $('announcement').textContent = message; }
+
+async function enableAudio() {
+  try {
+    const Audio = window.AudioContext || window.webkitAudioContext;
+    if (!Audio) return false;
+    audioContext ||= new Audio();
+    if (audioContext.state === 'suspended') await audioContext.resume();
+    return true;
+  } catch { return false; }
+}
+function tone(frequency = 400, duration = .12) {
+  if (!soundOn || !audioContext || audioContext.state !== 'running') return;
+  try {
+    const oscillator = audioContext.createOscillator(), gain = audioContext.createGain();
+    oscillator.type = 'sine'; oscillator.frequency.value = frequency;
+    gain.gain.setValueAtTime(.045, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime + duration);
+    oscillator.connect(gain); gain.connect(audioContext.destination);
+    oscillator.start(); oscillator.stop(audioContext.currentTime + duration);
+    oscillator.onended = () => {oscillator.disconnect();gain.disconnect();};
+  } catch { /* Sound is optional. */ }
+}
+function renderAudio() {
+  $('sound-button').setAttribute('aria-pressed',String(soundOn));
+  $('sound-button').setAttribute('aria-label',soundOn ? 'Ton ausschalten' : 'Ton einschalten');
+  $('sound-button').title = soundOn ? 'Ton ausschalten' : 'Ton einschalten';
+  $('sound-waves').setAttribute('d',soundOn ? 'M16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14' : 'm16 9 5 6m0-6-5 6');
+}
+$('sound-button').addEventListener('click',async () => {
+  soundOn = !soundOn;
+  if (soundOn && !await enableAudio()) {soundOn = false;announce('Dieser Browser unterstützt keinen Ton. Du kannst trotzdem spielen.');}
+  storage.write('sound',soundOn); renderAudio(); tone(580);
+});
+
+function buildBoard() {
+  $('board').style.gridTemplateColumns = `repeat(${size},minmax(0,1fr))`;
+  $('column-labels').style.gridTemplateColumns = `repeat(${size},1fr)`;
+  $('row-labels').style.gridTemplateRows = `repeat(${size},1fr)`;
+  $('column-labels').innerHTML = Array.from({length:size},(_,x)=>`<span>${String.fromCharCode(65+x)}</span>`).join('');
+  $('row-labels').innerHTML = Array.from({length:size},(_,y)=>`<span>${size-y}</span>`).join('');
+  $('board').replaceChildren(); cells = [];
+  for (let y=0;y<size;y++) for (let x=0;x<size;x++) {
+    const cell = document.createElement('button');
+    cell.type = 'button'; cell.dataset.x = x; cell.dataset.y = y;
+    cell.addEventListener('click',() => handleMove(x,y));
+    cell.addEventListener('focus',() => {focusPosition = y*size+x;cells.forEach((button,i)=>button.tabIndex=i===focusPosition ? 0 : -1);});
+    cells.push(cell); $('board').append(cell);
+  }
+  focusPosition = game.positions[0].y*size+game.positions[0].x;
+}
+function renderBoard() {
+  const legal = new Set(legalMoves(game).map(({x,y})=>y*size+x));
+  $('board').classList.toggle('duo-p2', mode === 'duo' && game.turn === 2);
+  $('board').inert = started && game.phase !== 'playing';
+  $('board').setAttribute('aria-label',`${size} mal ${size} Spielbrett${mode==='duo' ? `, Spieler ${game.turn} am Zug` : ''}`);
+  cells.forEach((button,index) => {
+    const x=index%size, y=Math.floor(index/size), cell=game.board[y][x];
+    const player = game.positions.findIndex((position,i)=>(i===0 || mode==='duo') && position.x===x && position.y===y)+1;
+    button.className = `cell${(x+y)%2?' light':''}${cell.visited?' visited p'+cell.visited:''}${cell.blocked?' blocked':''}${player?' current p'+player:''}${legal.has(index)?' legal':''}`;
+    if (started && game.lastEvent==='move' && player === (mode === 'duo' ? (game.turn===1 ? 2 : 1) : 1)) button.classList.add('last-hop');
+    button.innerHTML = player ? knightMarkup : cell.blocked ? '<span class="block-mark" aria-hidden="true">×</span>' : cell.visited ? '<span class="trail-dot" aria-hidden="true"></span>' : legal.has(index) ? '<span class="move-dot" aria-hidden="true"></span>' : '';
+    button.tabIndex = started && index===focusPosition && game.phase==='playing' ? 0 : -1;
+    const status = player ? `Springer ${player}` : cell.blocked ? 'Hindernis' : cell.visited ? 'bereits besucht' : legal.has(index) ? 'möglicher Sprung' : 'freies Feld';
+    button.setAttribute('aria-label',`${String.fromCharCode(65+x)}${size-y}, ${status}`);
+    button.setAttribute('aria-disabled',String(!started || !legal.has(index) || game.phase!=='playing'));
+  });
+}
+function renderClock() {
+  const timed = game.remaining !== null;
+  $('time-track').style.visibility = timed ? 'visible' : 'hidden';
+  $('time-fill').style.width = timed ? `${Math.max(0,game.remaining/game.duration*100)}%` : '100%';
+  $('time-track').classList.toggle('urgent',timed && game.remaining < 10);
+  if (mode==='time') $('secondary').innerHTML = `${Math.ceil(game.remaining)}<span> s</span>`;
+  if (mode==='classic' && started) $('board-caption').textContent = `${Math.ceil(game.remaining)} s · ${legalMoves(game).length} mögliche Züge`;
+}
+function renderStats() {
+  $('arena-mode').textContent = mode === 'time' ? 'TIME RUSH' : mode.toUpperCase();
+  $('level-tag').textContent = mode === 'duo' ? `SPIELER ${game.turn}` : mode==='danger' ? 'EIN BRETT' : mode==='time' ? '30 SEKUNDEN' : `LEVEL ${String(game.level).padStart(2,'0')}`;
+  $('score-label').textContent = mode==='duo' ? 'SPIELER 1' : 'DEIN SCORE';
+  $('score').textContent = pad(game.scores[0]);
+  $('best-label').textContent = mode==='duo' ? 'SPIELER 2' : 'BESTWERT';
+  $('best').textContent = pad(mode==='duo' ? game.scores[1] : bestScore());
+  $('secondary-label').textContent = mode==='time' ? 'ZEIT ÜBRIG' : mode==='duo' ? 'AM ZUG' : mode==='danger' ? 'SPRÜNGE' : 'NÄCHSTES LEVEL';
+  $('secondary').innerHTML = mode==='duo' ? `P${game.turn}` : mode==='danger' ? String(game.moves) : `${game.levelMoves}<span> / 10</span>`;
+  $('board-caption').textContent = mode==='time' ? 'Erneut besuchte Felder sind erlaubt.' : mode==='duo' ? `Spieler ${game.turn} ist am Zug.` : started ? `${legalMoves(game).length} mögliche Züge` : '2 Felder vor. 1 zur Seite.';
+  $('play-description').textContent = MODES[mode].description;
+  document.querySelector('.quick-rule p').textContent = mode==='time' ? 'Zwei Felder in eine Richtung, eins zur Seite. Im Time Rush darfst du Felder erneut besuchen.' : 'Zwei Felder in eine Richtung, eins zur Seite. Besuchte Felder sind tabu.';
+  $('play-heading').textContent = mode==='duo' ? 'Ein Brett. Zwei Strategien.' : mode==='time' ? 'Keine Zeit zu verlieren.' : mode==='danger' ? 'Finde deinen freien Weg.' : 'Bleib einen Sprung voraus.';
+  const levels = mode==='classic' || mode==='endless';
+  $('progress-label').textContent = levels ? 'Level-Fortschritt' : mode==='time' ? 'Deine Sprünge' : 'Mögliche Züge';
+  $('progress-value').textContent = levels ? `${game.levelMoves} / 10` : mode==='time' ? String(game.moves) : String(legalMoves(game).length);
+  $('progress-dots').hidden = !levels;
+  $('progress-dots').innerHTML = Array.from({length:10},(_,i)=>`<i${i<game.levelMoves?' class="filled"':''}></i>`).join('');
+  $('progress-note').textContent = levels ? 'Zehn Sprünge öffnen das nächste Brett. Plane voraus: Sackgassen beenden die Runde.' : MODES[mode].rules;
+  $('duo-turn').hidden = mode!=='duo';
+  $('duo-turn').textContent = `● Spieler ${game.turn} ist am Zug`;
+  $('duo-turn').style.color = game.turn===1 ? 'var(--accent)' : 'var(--opponent)';
+  renderClock();
+}
+function renderOverlay() {
+  const phase = started && game.phase!=='playing' ? game.phase : '';
+  const changed = phase !== overlayState;
+  overlayState = phase;
+  $('board-overlay').hidden = !phase;
+  document.querySelector('.sidebar').inert = !!phase;
+  document.querySelector('.site-header').inert = !!phase;
+  $('pause-button').inert = !!phase;
+  if (!phase) return;
+  const paused = phase==='paused';
+  $('overlay-eyebrow').textContent = paused ? 'EINEN MOMENT DURCHATMEN' : game.winner ? 'DUELL ENTSCHIEDEN' : game.scores[0]>bestAtStart ? 'NEUER PERSÖNLICHER BESTWERT' : 'GUT GESPRUNGEN';
+  $('overlay-title').textContent = paused ? 'Dein Zug kann warten.' : game.winner ? `Spieler ${game.winner} gewinnt!` : game.reason==='timeout' ? 'Die Zeit ist um.' : 'Kein Sprung mehr frei.';
+  $('overlay-description').textContent = paused ? 'Deine Runde und die Uhr sind angehalten.' : game.winner ? `Spieler ${game.turn} hat keinen gültigen Zug mehr.` : game.reason==='timeout' ? 'Neue Runde, neuer Anlauf. Schaffst du noch mehr?' : 'Gut gespielt. Versuch beim nächsten Mal, Fluchtwege offen zu halten.';
+  $('overlay-score').textContent = paused ? '' : mode==='duo' ? `${game.scores[0]} : ${game.scores[1]}` : `${game.scores[0]} Punkte`;
+  $('overlay-primary').innerHTML = `${paused ? 'Weiterspielen' : 'Nochmal spielen'} <span>↗</span>`;
+  if (changed) { $('overlay-primary').focus({preventScroll:true}); announce(paused ? 'Spiel pausiert.' : `${$('overlay-title').textContent} ${$('overlay-score').textContent}`); }
+}
+function render() { renderStats(); renderBoard(); renderOverlay(); }
+function setup() {
+  started = false; overlayState=''; game=createGame({mode,size});
+  $('setup-panel').hidden=false; $('playing-panel').hidden=true; $('pause-button').hidden=true;
+  document.querySelectorAll('[data-mode]').forEach(button=>{const on=button.dataset.mode===mode;button.classList.toggle('selected',on);button.setAttribute('aria-pressed',String(on));});
+  document.querySelectorAll('[data-size]').forEach(button=>{const on=Number(button.dataset.size)===size;button.classList.toggle('selected',on);button.setAttribute('aria-pressed',String(on));});
+  buildBoard();render();
+}
+function start() {
+  if(soundOn) void enableAudio();
+  game=createGame({mode,size}); started=true; bestAtStart=bestScore(); frameTime=performance.now();
+  $('setup-panel').hidden=true; $('playing-panel').hidden=false; $('pause-button').hidden=false;
+  buildBoard(); render();
+  cells[focusPosition].focus({preventScroll:true});
+  if (matchMedia('(max-width: 760px)').matches) document.querySelector('.arena').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'start'});
+  announce(`${MODES[mode].title} gestartet. ${legalMoves(game).length} mögliche Sprünge.`); tone(480);
+}
+function clock(now=performance.now()) {
+  const elapsed = Math.max(0,(now-frameTime)/1000);frameTime=now;
+  if(!started || game.phase!=='playing') return;
+  advanceTime(game,elapsed);
+  if(game.phase==='over') {tone(180,.35);render();}
+  else renderClock();
+}
+function handleMove(x,y) {
+  if(!started) {announce('Wähle einen Modus und drücke Spiel starten.');return;}
+  clock();
+  if(!move(game,x,y)) {if(game.phase==='playing') announce('Wähle einen markierten Punkt. Springe zwei Felder vor und eins zur Seite.');return;}
+  const activePosition = game.positions[game.turn-1];
+  focusPosition = mode==='duo' ? activePosition.y*size+activePosition.x : y*size+x;
+  if(mode!=='duo' && game.scores[0]>bestScore()) storage.write(`best.${mode}.${size}`,game.scores[0]);
+  render();
+  if(game.phase==='playing') cells[focusPosition].focus({preventScroll:true});
+  if(game.lastEvent==='level') {tone(880,.25);announce(`Level ${game.level}. Neues Brett, weiter geht es!`);}
+  else if(game.phase==='over') tone(180,.35);
+  else {tone(320+(game.moves%8)*45);announce(mode==='duo' ? `Spieler ${game.turn} ist am Zug. ${legalMoves(game).length} mögliche Sprünge.` : `${game.scores[0]} Punkte. ${legalMoves(game).length} mögliche Sprünge.`);}
+}
+function setPaused() {
+  if(!started || game.phase!=='playing') return;
+  clock();if(game.phase==='playing') pause(game);render();
+}
+function continueGame() {resume(game);frameTime=performance.now();render();cells[focusPosition].focus({preventScroll:true});}
+
+document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;saveSettings();setup();}));
+document.querySelectorAll('[data-size]').forEach(button=>button.addEventListener('click',()=>{size=Number(button.dataset.size);saveSettings();setup();}));
+document.querySelectorAll('[data-theme]').forEach(button=>button.addEventListener('click',()=>{theme=button.dataset.theme;applyTheme();saveSettings();}));
+$('start-button').addEventListener('click',start);
+$('restart-button').addEventListener('click',start);
+$('menu-button').addEventListener('click',()=>{setup();$('start-button').focus({preventScroll:true});});
+$('pause-button').addEventListener('click',setPaused);
+$('overlay-primary').addEventListener('click',()=>game.phase==='paused' ? continueGame() : start());
+$('overlay-secondary').addEventListener('click',()=>{setup();$('start-button').focus({preventScroll:true});});
+
+$('board').addEventListener('keydown',event=>{
+  const deltas = {ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};
+  if(!started || game.phase!=='playing' || !Object.hasOwn(deltas,event.key)) return;
+  event.preventDefault();
+  const [dx,dy]=deltas[event.key]; const x=Math.min(size-1,Math.max(0,focusPosition%size+dx)),y=Math.min(size-1,Math.max(0,Math.floor(focusPosition/size)+dy));
+  focusPosition=y*size+x; cells[focusPosition].focus({preventScroll:true});
+});
+document.addEventListener('keydown',event=>{
+  if($('rules-dialog').open) return;
+  if(overlayState && event.key==='Tab') {
+    event.preventDefault();
+    (document.activeElement===$('overlay-primary') ? $('overlay-secondary') : $('overlay-primary')).focus();
+    return;
+  }
+  if(event.altKey || event.ctrlKey || event.metaKey || !started || game.phase==='over') return;
+  if(event.key.toLowerCase()==='p' || event.key==='Escape') {event.preventDefault();game.phase==='paused' ? continueGame() : setPaused();}
+});
+document.addEventListener('visibilitychange',()=>{if(document.hidden) setPaused();});
+window.addEventListener('pagehide',setPaused);
+
+$('mode-rules').innerHTML = Object.entries(MODES).map(([key,value])=>`<div class="mode-rule"><strong>${key==='time'?'Time Rush':value.title}</strong><p>${value.rules}</p></div>`).join('');
+function openRules() {setPaused();$('rules-dialog').showModal();}
+$('help-button').addEventListener('click',openRules);
+$('rules-link').addEventListener('click',openRules);
+$('close-rules').addEventListener('click',()=>$('rules-dialog').close());
+$('understood').addEventListener('click',()=>$('rules-dialog').close());
+// Pausing makes the original help trigger inert; move focus to Resume on close.
+$('rules-dialog').addEventListener('close',()=>{if(started && game.phase==='paused') $('overlay-primary').focus({preventScroll:true});});
+applyTheme();renderAudio();setup();
+function tick(now) {clock(now);requestAnimationFrame(tick);}
+requestAnimationFrame(tick);
+
+</script>
+</body>
+</html>
